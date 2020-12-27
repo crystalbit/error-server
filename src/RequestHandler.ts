@@ -11,7 +11,7 @@ const body = `
   or any other between ${MIN_ERROR} and ${MAX_ERROR}, just go to <span></span>/errorCode
 </div>
 <script>
-  document.querySelector('span').innerText = window.location;
+  document.querySelector('span').innerText = window.location.protocol + '//' + window.location.host;
 </script>
 `;
 
