@@ -32,6 +32,8 @@ export const RequestHandler = (request: http.IncomingMessage, response: http.Ser
 
   if (request.url?.includes('/deliaz')) {
     fs.appendFile('./data.txt', request.url + '\n', () => {});
+    response.end();
+    return;
   }
 
   const code = parseInt(request.url?.substring(1) ?? '', 10);
