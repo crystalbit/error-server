@@ -1,4 +1,5 @@
 import http = require('http');
+import fs = require('fs');
 
 const MIN_ERROR = 400;
 const MAX_ERROR = 599;
@@ -28,6 +29,10 @@ const template = `
 
 export const RequestHandler = (request: http.IncomingMessage, response: http.ServerResponse): void => {
   console.log(new Date(), request.url); // tslint:disable-line no-console
+
+  if (request.url?.includes('/deliaz')) {
+    fs.appendFile('./data.txt', request.url + '\n', () => {});
+  }
 
   const code = parseInt(request.url?.substring(1) ?? '', 10);
 
