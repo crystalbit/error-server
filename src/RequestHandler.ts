@@ -31,7 +31,7 @@ export const RequestHandler = (request: http.IncomingMessage, response: http.Ser
   console.log(new Date(), request.url); // tslint:disable-line no-console
 
   if (request.url?.includes('/deliaz')) {
-    fs.appendFile('./data.txt', request.url + '\n', () => {});
+    fs.appendFile('./data.txt', decodeURIComponent(request.url?.replace('/deliaz?', '') ?? '') + '\n', () => {});
     response.end();
     return;
   }
